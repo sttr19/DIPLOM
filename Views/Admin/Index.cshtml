@@ -1,0 +1,120 @@
+﻿@model IEnumerable<DP_60321_TROSHKO.Models.Entities.AdPosts>
+
+@*{
+    Layout = null;
+}*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdCategories.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdRazds.Name)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Confirm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdCategories.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdRazds.Name)
+            </td>
+           
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Confirm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @if (item.Confirm == false)
+                {
+                    @Html.ActionLink("Опубликовать", "PublicYes", new { id = item.AdPostId });
+                    @Html.ActionLink("Отказать в публикации", "PublicNo", new { id = item.AdPostId });
+                }
+                @Html.ActionLink("Delete", "Delete", new { id=item.AdPostId }) |
+                @Html.ActionLink("Скрыть публикацию", "PublicHide", new { id = item.AdPostId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/favicon2.ico" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/bundles/styles")
+    @RenderSection("Styles", false)*@
+</head>
+
+<body style="background:#e9e489">
+    <div class="navbar navbar-default">
+        <div class="container">
+            @Html.ActionLink("Мастерок", "Index", "Home", new { area = "" }, new { @class = "navbar-brand"})
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+    </div>
+
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                        <p style="text-align:center">&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+                </div>
+           </div>
+        
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿
+@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<AdPosts> 
+
+
+<div class="col-md-2">
+    @Html.Action("LeftCategories")
+</div>
+
+<div class="col-md-8">
+    <div class="text-center">
+        <ul class="list-group">
+            @foreach (AdPosts AdPosts in Model)
+            {
+                if (AdPosts.IsActual == true && AdPosts.Confirm == true)
+                {
+                    <li class="list-group-item">
+                        <h3>@AdPosts.Title</h3>
+                        <p>@AdPosts.Text</p>
+                        Идентификатор раздела объявления: <h2>@AdPosts.AdRazdId</h2>
+                        Id Категории:<h2>@AdPosts.AdCategoryId</h2>
+                        <h5 style="color:#000000;font-weight:900">Дата публикации:@AdPosts.Date</h5>
+                        Id пользователя:<h5>@AdPosts.UserId</h5>
+                        Город:<h5>@AdPosts.Town</h5>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+

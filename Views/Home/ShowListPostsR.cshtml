@@ -1,0 +1,43 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<AdPosts>
+
+<div class="col-md-2" style="padding-top:60px">
+@Html.Action("LeftCategories")
+    </div>
+
+<div class="col-md-8" style="padding-top:60px">
+    <h3 align="center">Последние добавленные заказы:</h3>
+        <ul class="list-group">
+            @foreach (AdPosts AdPosts in Model)
+            {
+                <li class="list-group-item">
+                    <h3>@AdPosts.Title</h3>
+                    @if (User.IsInRole("Подрядчик"))
+                    {
+                        <div class="row" style="margin-top: 15px">
+                            <div id="buttonleft" class="col-md-3">
+
+                                @using (Html.BeginForm("AddOffer", "Home", new { id = AdPosts.AdPostId, s = AdPosts.User.UserName, p = AdPosts.UserId }))
+                                {
+                                    <input type="submit" value="Отправить предложение" class="btn-lg btn-primary" />
+                                }
+                            </div>
+                        </div>
+                    }
+                    <p>
+                        @AdPosts.Text
+                    </p>
+                    <h5 style="color:#000000;font-weight:900">Дата публикации:@AdPosts.Date</h5>
+                    @*Идентификатор раздела объявления: <h2>@AdPosts.AdRazdId</h2>*@
+                </li>
+            }
+        </ul>
+    @Html.Partial("PagerPartialClient", Model)
+</div>
+
+@if (User.IsInRole("Заказчик"))
+{
+<div class="col-md-2" style="padding-top:100px">
+        @Html.Action("PartialAddPost")
+</div>
+}

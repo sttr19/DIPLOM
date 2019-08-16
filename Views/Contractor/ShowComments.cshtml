@@ -1,0 +1,28 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<Comments>
+@{
+    ViewBag.Title = "ShowComments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h3>Отзывы по подрядчику:@ViewBag.vop</h3>
+  
+    <table class="table table-bordered" style="background-color:#ffffff">
+        <tr>
+            <th class="text-center">Заказ</th>
+            <th class="text-center">Дата добавления</th>
+            <th class="text-center">Текст</th>
+            <th class="text-center">Оценка</th>
+        </tr>
+        @foreach (Comments zz in Model)
+        {
+            <tr>
+                <td class="text-center">@zz.AdPosts.Title</td>
+                <td class="text-center">@zz.Date</td>
+                <td class="text-center">@zz.Text</td>
+                <td class="text-center">@zz.Rating</td>
+            </tr>
+          }
+</table>
+<h3 style="color:#ff0000">Средняя оценка:@ViewBag.vop1</h3>
+

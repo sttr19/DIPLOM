@@ -1,0 +1,25 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<AdPosts>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FormContractor</title>
+</head>
+<body>
+    <ul class="list-group">
+
+        @foreach (AdPosts AdPosts in Model)
+        {
+            <li class="list-group-item">
+                <p>
+                    @AdPosts.UserId
+                </p>
+            </li>
+        }
+    </ul>
+
+</body>
+</html>

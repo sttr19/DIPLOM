@@ -1,0 +1,50 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<Offers>
+
+    <div> 
+        <div class="panel-heading">
+            <h3>Отправленные предложения</h3>
+        </div>
+
+        <div class="panel-body">
+            <table class="table  table-bordered" style="background-color:#ffffff">
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Кому</th>
+                    <th class="text-center">Дата</th>
+                    <th class="text-center">Объявление</th>
+                    <th class="text-center">Состояние</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.OfferId</td>
+                        <td class="text-center">@item.UserNameClient</td>
+                        <td class="text-center">@item.DateOffer</td>
+                        <td class="text-center">@item.AdPosts.Title</td> 
+                        
+                        @if (item.StateId == 4)
+                        {
+                            <td bgcolor="yellow" class="text-center"><font color="green">@item.StateOffers.Name</font></td>        // на рассмотрении
+
+                        }
+                        @if (item.StateId == 1)
+                        {
+                            <td bgcolor="blue" class="text-center"><font color="red">@item.StateOffers.Name</font></td>              // вас выбрали
+                        }
+                        @if (item.StateId == 2)
+                        {
+                            <td bgcolor="wheat" class="text-center"><font color="red">@item.StateOffers.Name</font></td>              // вам отказали
+                        }
+
+                        @if (item.StateId == 3)
+                        {
+                            <td bgcolor="aqua" class="text-center"><font color="red">@item.StateOffers.Name</font></td>              // исполнитель определен
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+
+    </div>
+

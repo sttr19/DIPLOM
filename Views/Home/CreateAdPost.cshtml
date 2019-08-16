@@ -1,0 +1,58 @@
+﻿
+@model DP_60321_TROSHKO.Models.Entities.AdPosts
+
+    <div>
+        @using (Html.BeginForm("CreateAdpost", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Заголовок:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Title, null, new { @class = "form-control", placeholder = "Введите название" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Цена:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Price, null, new { @class = "form-control", placeholder = "Введите название" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                <label for="name" class="col-md-2 control-label">ID раздела:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.AdRazdId, null, new { @class = "form-control", placeholder = "Введите название" })
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Описание:</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Text, null, new { @class = "form-control", placeholder = "Введите название" })
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">ID категории:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.AdCategoryId, null, new { @class = "form-control", placeholder = "Введите название" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <label for="name" class="col-md-2 control-label">ID пользователя:</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.UserId, null, new { @class = "form-control", placeholder = "Введите название" })
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-info">Добавить</button>
+                    </div>
+                </div>
+
+        }
+
+
+    </div>
+   

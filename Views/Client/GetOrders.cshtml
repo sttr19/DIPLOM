@@ -1,0 +1,54 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<AdPosts>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetOrders</title>
+</head>
+<body>
+    <div> 
+        <div class="panel-heading">
+            <h3>Мои заказы</h3>
+        </div>
+        <table class="table table-bordered" style="background-color:#ffffff">
+            <tr>
+                <th class="text-center">Объявление</th>
+                <th class="text-center">Дата</th>
+                <th class="text-center">Состояние</th>
+                <th class="text-center">Отзыв</th>
+                <th class="text-center">Действия</th>
+            </tr>
+          
+           
+
+                    @foreach (var k in Model)
+                    {
+                                <tr>
+                                    <td class="text-center">@k.Title</td>
+                                    <td class="text-center">@k.Date</td> 
+                                        @if (k.IsActual == false)
+                                        {
+                                         <td class="text-center">Исполнитель назначен</td>
+                                        }
+                                        else
+                                        {
+                                    <td class="text-center">Исполнитель ещё не назначен</td>
+                                        }
+                                   
+                                    @if (k.TimeOver > DateTime.Today||k.IsActual==true)
+                                        {
+                                        <td class="text-center">Вы пока не можете оставить отзыв</td>
+                                        }
+                                    else if (k.IsActual==false&&k.TimeOver < DateTime.Today)
+                                       {
+                                        <td class="text-center"><a href="@Url.Action("AddComment", "Client", new { id = k.AdPostId })"> Вы можете оставить отзыв</a></td>
+                                       }
+                                        <td class="text-center"><a href="@Url.Action("EditPost", "Client",new { id = k.AdPostId })">Редактировать</a> / <a href="@Url.Action("DelPost", "Client",new { id = k.AdPostId })">Удалить</a></td> 
+                                </tr>
+                            } 
+                     
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+﻿@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<AdCategories>
+
+
+
+        <h3 align="center"> Категории работ:</h3>
+        <ul class="nav nav-pills nav-stacked">
+            @foreach (var h in Model)
+            {
+                <li><a href="@Url.Action("ShowListPostsC", "Home", new { id = h.AdCategoryId })">@h.Name</a></li>
+            }
+        </ul>
+ 

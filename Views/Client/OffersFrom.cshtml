@@ -1,0 +1,79 @@
+﻿
+@using DP_60321_TROSHKO.Models.Entities
+@model IEnumerable<Offers>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OffersFrom</title>
+</head>
+<body>
+    
+    <div> 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Предложения от Подрядчиков</h3>
+                
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-condensed table-bordered">
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Подрядчик</th>
+                        <th class="text-center">Дата</th>
+                        <th class="text-center">Объявление</th>
+                        <th class="text-center">Действия</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.OfferId</td>
+                            <td class="text-center">@item.User.UserName</td>
+                            <td class="text-center">@item.DateOffer</td>
+                            <td class="text-center">@item.AdPosts.Title</td>
+                            <td class="text-center">
+                                @using (Html.BeginForm("AcceptOffer", "Client"))
+                                {
+                                    @Html.Hidden("IdPost", item.IdPost)
+                                    @Html.Hidden("IdOffer", item.OfferId)
+                                    if (item.StateId == 1||item.StateId==2||item.StateId==3)
+                                    {
+                                    <input type="submit" class="btn btn-primary btn-xs" disabled="disabled" value="Назначить исполнителем" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" class="btn btn-primary btn-xs"  value="Назначить исполнителем" />
+                                    }
+
+                                }
+                                @using (Html.BeginForm("Refuse", "Client"))
+                                {
+                                    @Html.Hidden("IdOffer", item.OfferId)
+                                    if (item.StateId == 2||item.StateId==1)
+                                    {
+                                    <input  type="submit" class="btn btn-danger btn-xs" disabled="disabled" value="Отказать" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" class="btn btn-danger btn-xs"  value="Отказать" />
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+          
+        </div>
+    
+    </div>
+
+    <script>
+        $("form").on("submit", function () {
+            $(this).find(":submit").prop("disabled", true);
+        });
+    </script>
+</body>
+</html>
